@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface ApiInterface {
     @GET("quiz.json")
-    fun getQuestions() : Response<QuestionList>
+   suspend fun getQuestions() : Response<QuestionList>
 }
