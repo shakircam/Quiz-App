@@ -20,22 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/question_size_Tv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:text="Question:"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/question_number_Tv"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/question_size_Tv"
-                android:text="2/10"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/question_2_10"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_margin="10dp"
@@ -47,18 +37,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="10:00"
+                android:text="@string/_05_00"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/score_number_Tv"
-                app:layout_constraintStart_toEndOf="@+id/question_size_Tv"
+                app:layout_constraintStart_toEndOf="@+id/question_number_Tv"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/score_number_Tv"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Score:10"
+                android:text="@string/score_10"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_margin="10dp"
@@ -86,7 +76,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/question_point"
-                android:text="100 point"
+                android:text="@string/_100_point"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp"
                 android:textStyle="bold"
@@ -98,7 +88,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/logo"
                 android:id="@+id/question_pic"
                 android:layout_width="200dp"
                 android:layout_height="150dp"/>
@@ -110,7 +100,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/questionTx"
-                android:text="What is your name?"
+                android:text="@string/language"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -125,6 +115,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons"
         app:layout_constraintTop_toBottomOf="@+id/card"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
@@ -148,7 +139,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_one"
-                    android:text="Css"
+                    android:text="@string/css"
                     android:layout_marginTop="3dp"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -176,7 +167,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_two"
-                    android:text="Css"
+                    android:text="@string/java"
                     android:layout_marginTop="3dp"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -204,7 +195,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_three"
-                    android:text="Css"
+                    android:text="@string/python"
                     android:layout_marginTop="3dp"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -232,7 +223,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_four"
-                    android:text="Css"
+                    android:text="@string/kotlin"
                     android:layout_marginTop="3dp"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -249,5 +240,17 @@
             android:layout_height="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        app:layout_constraintTop_toBottomOf="@+id/cons"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20sp"
+        android:layout_marginTop="30dp"
+        android:textAllCaps="false"
+        android:id="@+id/backBt"
+        android:visibility="gone"
+        android:text="@string/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

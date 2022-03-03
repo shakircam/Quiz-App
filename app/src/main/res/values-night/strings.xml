@@ -1,7 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QuizApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="question_2_10">Question: 2/10</string>
     <string name="_05_00">05:00</string>
     <string name="score_10">Score:00</string>
@@ -17,6 +15,5 @@
     <string name="score">00 Point</string>
     <string name="start">Start</string>
     <string name="titleBold">Quiz</string>
-    <string name="point">Point</string>
     <string name="go">Go To Home</string>
 </resources>
