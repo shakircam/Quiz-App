@@ -31,10 +31,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showHighScore()
-        binding.startBt.setOnClickListener {
+        binding.gk.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToQuestionsFragment()
             view.findNavController().navigate(action)
         }
+
     }
 
 

@@ -14,6 +14,6 @@
     <string name="high_score">Highscore</string>
     <string name="score">00 Point</string>
     <string name="start">Start</string>
-    <string name="titleBold">Quiz</string>
+    <string name="titleBold">Quiz App</string>
     <string name="go">Go To Home</string>
 </resources>

@@ -1,15 +1,21 @@
 package com.shakircam.quizapp.data.network
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.shakircam.quizapp.utils.Constants.Companion.BASE_URL
-import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class ApiService {
 
     companion object{
+
+        val gson: Gson = GsonBuilder()
+            .setLenient()
+            .create()
 
         private val retrofit by lazy {
             val logging = HttpLoggingInterceptor()
@@ -19,12 +25,13 @@ class ApiService {
                 .build()
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .addConverterFactory(MoshiConverterFactory.create().asLenient())
                 .build()
         }
         val api by lazy {
             retrofit.create(ApiInterface::class.java)
-            //Replace ApiInterface to QuestionApi for better coding name conversation..
+
         }
     }
 }

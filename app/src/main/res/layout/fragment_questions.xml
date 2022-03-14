@@ -63,7 +63,9 @@
         android:id="@+id/card"
         app:cardMaxElevation="10dp"
         app:cardCornerRadius="10dp"
-        android:layout_margin="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -74,41 +76,48 @@
             <androidx.appcompat.widget.AppCompatTextView
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/question_point"
-                android:text="@string/_100_point"
+                android:id="@+id/pointTx"
+                android:text="Point"
+                android:textColor="@color/red"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                app:layout_constraintTop_toBottomOf="@+id/question_point"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/logo"
-                android:id="@+id/question_pic"
-                android:layout_width="200dp"
-                android:layout_height="150dp"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/pointTx"
+                android:id="@+id/question_point"
+                android:text="@string/_100_point"
+                android:textColor="@color/red"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
 
             <androidx.appcompat.widget.AppCompatTextView
-                app:layout_constraintTop_toBottomOf="@+id/question_pic"
+                app:layout_constraintTop_toBottomOf="@+id/question_point"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/questionTx"
                 android:text="@string/language"
+                android:maxLines="3"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="50dp"/>
+
             <View
                 app:layout_constraintTop_toBottomOf="@+id/questionTx"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"/>
+                android:layout_height="20dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -117,7 +126,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cons"
         app:layout_constraintTop_toBottomOf="@+id/card"
-        android:layout_margin="20dp"
+        android:layout_marginEnd="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -127,7 +138,7 @@
             app:cardMaxElevation="10dp"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="40dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/option_one_item"
@@ -140,9 +151,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_one"
                     android:text="@string/css"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="8dp"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -155,7 +166,7 @@
             app:cardMaxElevation="10dp"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="40dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/option_two_item"
@@ -168,9 +179,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_two"
                     android:text="@string/java"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="8dp"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -183,7 +194,7 @@
             app:cardMaxElevation="10dp"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="40dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/option_three_item"
@@ -196,9 +207,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_three"
                     android:text="@string/python"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="8dp"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -211,7 +222,7 @@
             app:cardMaxElevation="10dp"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="40dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/option_four_item"
@@ -224,9 +235,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/option_four"
                     android:text="@string/kotlin"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="8dp"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.shakircam.quizapp.MainActivity
 import com.shakircam.quizapp.R
 import com.shakircam.quizapp.data.repository.QuestionRepository
 import com.shakircam.quizapp.databinding.FragmentQuestionsBinding
@@ -46,7 +47,7 @@ class QuestionsFragment : Fragment() {
     private var questionCountTotal = 0
     private var currentQuestion: QuestionList.Question? = null
     companion object{
-        const val START_TIME_IN_MILLIS = 10000L
+        const val START_TIME_IN_MILLIS = 60000L
     }
     private lateinit var appPreference: AppPreference
 
@@ -60,20 +61,20 @@ class QuestionsFragment : Fragment() {
         val questionRepository = QuestionRepository()
         val viewModelProviderFactory = QuestionsViewModelFactory(questionRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(QuestionsViewModel::class.java)
-
+        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.questionList.observe(viewLifecycleOwner, Observer { response ->
-            when(response) {
+        viewModel.questionList.observe(viewLifecycleOwner) { response ->
+            when (response) {
                 is Resource.Success -> {
 
                     response.data?.let { questionResponse ->
                         list.addAll(questionResponse.questions)
-                       // list.shuffle()
+                        // list.shuffle()
                         Log.d(TAG, "Success: $questionResponse")
                         showNextQuestion()
                         clickToQuestion()
@@ -87,17 +88,16 @@ class QuestionsFragment : Fragment() {
                     }
                 }
                 is Resource.Loading -> {
-                   // showProgressBar()
+                    // showProgressBar()
                 }
             }
-        })
-
+        }
         binding.backBt.setOnClickListener {
             saveHighestScore()
             val action = QuestionsFragmentDirections.actionQuestionsFragmentToHomeFragment()
             view.findNavController().navigate(action)
+            activity?.finish()
         }
-
 
     }
 
@@ -109,10 +109,9 @@ class QuestionsFragment : Fragment() {
 
             currentQuestion = list[questionCounter]
             binding.questionTx.text = currentQuestion!!.question
-            Glide.with(binding.questionPic)
-                .load(currentQuestion!!.questionImageUrl)
-                .into(binding.questionPic)
 
+
+            binding.questionPoint.text= currentQuestion!!.score.toString()
             binding.optionOne.text = currentQuestion!!.answers.A
             binding.optionTwo.text = currentQuestion!!.answers.B
             binding.optionThree.text = currentQuestion!!.answers.C
@@ -291,6 +290,9 @@ class QuestionsFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 mTimeLeftInMillis = millisUntilFinished
                 updateCountDownText()
+                if (mTimeLeftInMillis<11000){
+                    binding.countDownTimeTx.setTextColor(ContextCompat.getColor(requireContext(),R.color.red))
+                }
                 Log.d("this","timer tick")
             }
 
