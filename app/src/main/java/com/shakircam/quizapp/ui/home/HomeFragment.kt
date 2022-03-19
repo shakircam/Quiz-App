@@ -36,6 +36,9 @@ class HomeFragment : Fragment() {
             view.findNavController().navigate(action)
         }
 
+
+
+
     }
 
 

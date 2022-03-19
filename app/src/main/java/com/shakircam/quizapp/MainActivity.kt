@@ -5,7 +5,11 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import com.shakircam.quizapp.databinding.ActivityMainBinding
+import com.shakircam.quizapp.utils.MyWorker
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
        // setContentView(R.layout.activity_main)
-
+        runWorkManager()
         navController = findNavController(R.id.navHostFragment)
         setupActionBarWithNavController(navController)
     }
@@ -25,5 +29,13 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         //val navController = findNavController(R.id.navHostFragment)
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+    private fun runWorkManager() {
+
+        val request: WorkRequest = OneTimeWorkRequestBuilder<MyWorker>()
+            .build()
+
+        WorkManager.getInstance()
+            .enqueue(request)
     }
 }

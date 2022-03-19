@@ -77,7 +77,7 @@ class QuestionsFragment : Fragment() {
                         // list.shuffle()
                         Log.d(TAG, "Success: $questionResponse")
                         showNextQuestion()
-                        clickToQuestion()
+                       // clickToQuestion()
 
                     }
                 }
@@ -92,25 +92,29 @@ class QuestionsFragment : Fragment() {
                 }
             }
         }
-        binding.backBt.setOnClickListener {
+
+       /* binding.nextBt.setOnClickListener {
             saveHighestScore()
             val action = QuestionsFragmentDirections.actionQuestionsFragmentToHomeFragment()
             view.findNavController().navigate(action)
             activity?.finish()
-        }
+        }*/
 
+        binding.nextBt.setOnClickListener{
+            showNextQuestion()
+            clickToQuestion()
+        }
     }
 
 
     @SuppressLint("SetTextI18n")
     private fun showNextQuestion() {
+
         questionCountTotal = list.size
         if (questionCounter < questionCountTotal) {
-
+            enabledOption()
             currentQuestion = list[questionCounter]
             binding.questionTx.text = currentQuestion!!.question
-
-
             binding.questionPoint.text= currentQuestion!!.score.toString()
             binding.optionOne.text = currentQuestion!!.answers.A
             binding.optionTwo.text = currentQuestion!!.answers.B
@@ -128,22 +132,21 @@ class QuestionsFragment : Fragment() {
             questionCounter++
             binding.questionNumberTv.text = "Question: $questionCounter/$questionCountTotal"
             if (questionCounter == list.size){
-                binding.backBt.isVisible = true
+
                 lifecycleScope.launch {
-                    delay(10000)
+                    delay(60000)
                     hideOption()
                 }
             }
         } else {
             mCountDownTimer.cancel()
-            binding.backBt.isVisible = true
             Toast.makeText(requireActivity(),"finish the task",Toast.LENGTH_SHORT).show()
         }
     }
 
 
 
-    @SuppressLint("SetTextI18n")
+   /* @SuppressLint("SetTextI18n")
     private  fun  clickToQuestion(){
         binding.optionOneItem.setOnClickListener {
 
@@ -166,21 +169,23 @@ class QuestionsFragment : Fragment() {
                     }
                 }
             }
+
             mCountDownTimer.cancel()
             mTimeLeftInMillis = START_TIME_IN_MILLIS
             resetCountDownText()
+
             lifecycleScope.launch {
-                delay(2000)
+                delay(3000)
                 Log.d("this","click item cancel timer & show question")
                 flag = 1
                 resetOptionColor()
                 showNextQuestion()
             }
-
-
         }
 
+
         binding.optionTwoItem.setOnClickListener {
+
             if (currentQuestion!!.correctAnswer == "B"){
                 number += currentQuestion!!.score
                 binding.scoreNumberTv.text = "Score: $number"
@@ -203,7 +208,8 @@ class QuestionsFragment : Fragment() {
             mTimeLeftInMillis = START_TIME_IN_MILLIS
             resetCountDownText()
             lifecycleScope.launch {
-                delay(2000)
+
+                delay(3000)
                 Log.d("this","click item cancel timer & show question")
                 flag = 1
                 resetOptionColor()
@@ -213,6 +219,7 @@ class QuestionsFragment : Fragment() {
         }
 
         binding.optionThreeItem.setOnClickListener {
+
             if (currentQuestion!!.correctAnswer == "C"){
                 number += currentQuestion!!.score
                 binding.scoreNumberTv.text = "Score: $number"
@@ -235,7 +242,8 @@ class QuestionsFragment : Fragment() {
             mTimeLeftInMillis = START_TIME_IN_MILLIS
             resetCountDownText()
             lifecycleScope.launch {
-                delay(2000)
+
+                delay(3000)
                 Log.d("this","click item cancel timer & show question")
                 flag = 1
                 resetOptionColor()
@@ -244,6 +252,7 @@ class QuestionsFragment : Fragment() {
         }
 
         binding.optionFourItem.setOnClickListener {
+
             if (currentQuestion!!.correctAnswer == "D"){
                 number += currentQuestion!!.score
                 binding.scoreNumberTv.text = "Score: $number"
@@ -267,11 +276,151 @@ class QuestionsFragment : Fragment() {
             mTimeLeftInMillis = START_TIME_IN_MILLIS
             resetCountDownText()
             lifecycleScope.launch {
-                delay(2000)
+
+                delay(3000)
                 Log.d("this","click item cancel timer & show question")
                 flag = 1
                 resetOptionColor()
                 showNextQuestion()
+            }
+        }
+
+    }*/
+
+    @SuppressLint("SetTextI18n")
+    private  fun  clickToQuestion(){
+        when {
+            binding.one.isChecked -> {
+
+                if (currentQuestion!!.correctAnswer == "A"){
+                    number += currentQuestion!!.score
+                    binding.scoreNumberTv.text = "Score: $number"
+                    binding.cardOptionOne.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+
+                }else{
+                    binding.cardOptionOne.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.red))
+                    when (currentQuestion!!.correctAnswer) {
+                        "B" -> {
+                            binding.cardOptionOne.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "C" -> {
+                            binding.cardOptionTwo.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "D" -> {
+                            binding.cardOptionFour.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                    }
+                }
+
+                mCountDownTimer.cancel()
+                mTimeLeftInMillis = START_TIME_IN_MILLIS
+                resetCountDownText()
+
+                lifecycleScope.launch {
+                    delay(3000)
+                    Log.d("this","click item cancel timer & show question")
+                    flag = 1
+                    resetOptionColor()
+                    showNextQuestion()
+                }
+            }
+            binding.two.isChecked -> {
+
+                if (currentQuestion!!.correctAnswer == "B"){
+                    number += currentQuestion!!.score
+                    binding.scoreNumberTv.text = "Score: $number"
+                    binding.cardOptionTwo.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                }else{
+                    binding.cardOptionTwo.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.red))
+                    when (currentQuestion!!.correctAnswer) {
+                        "A" -> {
+                            binding.cardOptionOne.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "C" -> {
+                            binding.cardOptionTwo.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "D" -> {
+                            binding.cardOptionFour.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                    }
+                }
+                mCountDownTimer.cancel()
+                mTimeLeftInMillis = START_TIME_IN_MILLIS
+                resetCountDownText()
+                lifecycleScope.launch {
+
+                    delay(3000)
+                    Log.d("this","click item cancel timer & show question")
+                    flag = 1
+                    resetOptionColor()
+                    showNextQuestion()
+
+                }
+            }
+            binding.three.isChecked -> {
+
+                if (currentQuestion!!.correctAnswer == "C"){
+                    number += currentQuestion!!.score
+                    binding.scoreNumberTv.text = "Score: $number"
+                    binding.cardOptionThree.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                }else{
+                    binding.cardOptionThree.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.red))
+                    when (currentQuestion!!.correctAnswer) {
+                        "A" -> {
+                            binding.cardOptionOne.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "B" -> {
+                            binding.cardOptionTwo.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "D" -> {
+                            binding.cardOptionFour.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                    }
+                }
+                mCountDownTimer.cancel()
+                mTimeLeftInMillis = START_TIME_IN_MILLIS
+                resetCountDownText()
+                lifecycleScope.launch {
+
+                    delay(3000)
+                    Log.d("this","click item cancel timer & show question")
+                    flag = 1
+                    resetOptionColor()
+                    showNextQuestion()
+                }
+            }
+            binding.four.isChecked -> {
+
+                if (currentQuestion!!.correctAnswer == "D"){
+                    number += currentQuestion!!.score
+                    binding.scoreNumberTv.text = "Score: $number"
+                    binding.cardOptionFour.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                }else{
+                    binding.cardOptionFour.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.red))
+                    when (currentQuestion!!.correctAnswer) {
+                        "A" -> {
+                            binding.cardOptionOne.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "B" -> {
+                            binding.cardOptionTwo.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                        "C" -> {
+                            binding.cardOptionFour.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.green))
+                        }
+                    }
+                }
+
+                mCountDownTimer.cancel()
+                mTimeLeftInMillis = START_TIME_IN_MILLIS
+                resetCountDownText()
+                lifecycleScope.launch {
+
+                    delay(3000)
+                    Log.d("this","click item cancel timer & show question")
+                    flag = 1
+                    resetOptionColor()
+                    showNextQuestion()
+                }
             }
         }
 
@@ -339,6 +488,22 @@ class QuestionsFragment : Fragment() {
        binding.cardOptionTwo.isVisible = false
        binding.cardOptionThree.isVisible = false
        binding.cardOptionFour.isVisible = false
+    }
+
+
+    private fun disableOption(){
+        binding.cardOptionOne.isClickable = false
+        binding.cardOptionTwo.isClickable = false
+        binding.cardOptionThree.isClickable = false
+        binding.cardOptionFour.isClickable = false
+    }
+
+
+    private fun enabledOption(){
+        binding.cardOptionOne.isClickable = true
+        binding.cardOptionTwo.isClickable = true
+        binding.cardOptionThree.isClickable = true
+        binding.cardOptionFour.isClickable = true
     }
 
     override fun onDestroyView() {

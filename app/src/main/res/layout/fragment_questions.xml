@@ -123,11 +123,42 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+
+    <RadioGroup
+        app:layout_constraintTop_toBottomOf="@id/card"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/one"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RadioGroup>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cons"
         app:layout_constraintTop_toBottomOf="@+id/card"
-        android:layout_marginEnd="20sp"
-        android:layout_marginStart="20sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginStart="40sp"
         android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -258,9 +289,8 @@
         android:layout_marginEnd="20sp"
         android:layout_marginTop="30dp"
         android:textAllCaps="false"
-        android:id="@+id/backBt"
-        android:visibility="gone"
-        android:text="@string/go"
+        android:id="@+id/nextBt"
+        android:text="Next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
